@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 export default function PromoCard() {
   return (
-    <div className="group relative bg-[#1a1b2e] rounded-xl overflow-hidden h-48 flex flex-col justify-end p-6 border border-border/50">
+    <div className="group relative bg-[#1a1b2e] rounded-xl overflow-hidden h-48 flex flex-col justify-end p-6 border border-border/50 hover:border-neon-blue/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]">
        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/90 z-10" />
        
        {/* Background noise/pattern */}

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export default function ProfileCard() {
   return (
-    <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6 relative overflow-hidden">
+    <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6 relative overflow-hidden hover:border-neon-blue/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]">
       <h3 className="text-lg font-bold mb-4 font-display text-foreground border-l-4 border-neon-pink pl-3">
         关注博主
       </h3>

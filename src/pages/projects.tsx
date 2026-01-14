@@ -16,7 +16,7 @@ export default function Projects({ allPostsData }: ProjectsProps) {
         <h1 className="text-4xl font-display font-bold text-neon-blue">项目</h1>
         <div className="grid grid-cols-1 gap-6">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="group relative border border-border bg-card overflow-hidden rounded-lg">
+            <div key={i} className="group relative border border-border/50 bg-card/80 backdrop-blur-sm overflow-hidden rounded-lg hover:border-neon-blue/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,243,255,0.1)]">
               <div className="aspect-video bg-muted/20 flex items-center justify-center text-muted-foreground">
                 Project Preview Image {i}
               </div>
