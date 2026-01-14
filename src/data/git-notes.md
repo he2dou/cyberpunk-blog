@@ -43,3 +43,25 @@ git rebase main
 - **修改最后一次提交**: `git commit --amend`
 - **撤销本地修改**: `git checkout -- <file>`
 - **强制推送 (慎用)**: `git push -f`
+
+## 4. 性能优化
+- **使用 shallow clone**: `git clone --depth 1 <repo>`
+- **配置 Git 缓存**: `git config --global core.preloadindex true`
+
+### 撤消合并
+如果不小心合并了错误的分支，使用 `git reset --hard HEAD~1 或者 git reset --merge HEAD~1 ` 可以撤消最近一次合并。
+- **`--hard`**: 丢弃所有未提交的更改。
+- **`--merge`**: 尝试合并更改，保留提交历史。
+
+暂存未提交的代码
+```bash
+#保存：
+git stash
+
+#显示：
+git stash list
+
+#导入：
+git stash pop
+
+```
