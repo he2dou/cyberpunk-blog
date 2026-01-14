@@ -29,7 +29,7 @@ export default function ArchiveCard({ posts }: ArchiveCardProps) {
 
   return (
     <div className="bg-card/80 backdrop-blur-sm border border-border/50 rounded-xl p-6 relative overflow-hidden">
-      <h3 className="text-lg font-bold mb-4 font-display text-foreground border-l-4 border-neon-yellow pl-3">
+      <h3 className="text-lg font-bold mb-4 font-display text-foreground border-l-4 border-neon-pink pl-3">
         文章归档
       </h3>
       

@@ -17,7 +17,7 @@ export default function Categories({ allPostsData }: CategoriesProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-8 space-y-6">
-        <h1 className="text-3xl font-display font-bold text-neon-blue">文章分类</h1>
+        <h1 className="text-4xl font-display font-bold text-neon-blue">分类</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {categories.map((cat) => {
              const count = allPostsData.filter(p => p.category === cat).length;

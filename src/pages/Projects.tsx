@@ -13,7 +13,7 @@ export default function Projects({ allPostsData }: ProjectsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-8 space-y-6">
-        <h1 className="text-3xl font-display font-bold text-neon-yellow">项目展示</h1>
+        <h1 className="text-4xl font-display font-bold text-neon-blue">项目</h1>
         <div className="grid grid-cols-1 gap-6">
           {[1, 2, 3].map((i) => (
             <div key={i} className="group relative border border-border bg-card overflow-hidden rounded-lg">

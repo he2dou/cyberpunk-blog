@@ -22,7 +22,7 @@ export default function RecentPostsCard({ posts }: RecentPostsCardProps) {
         {recentPosts.map((post) => (
           <div key={post.id} className="group relative pl-2">
             {/* Decoration line */}
-            <div className="absolute left-0 top-1.5 w-[2px] h-[calc(100%-6px)] bg-border group-hover:bg-neon-blue transition-colors duration-300" />
+            {/* <div className="absolute left-0 top-1.5 w-[2px] h-[calc(100%-6px)] bg-border group-hover:bg-neon-blue transition-colors duration-300" /> */}
             
             <Link href={`/posts/${post.id}`} className="block">
                 <h4 className="text-sm font-medium text-foreground/90 group-hover:text-neon-blue transition-colors line-clamp-2 leading-relaxed">

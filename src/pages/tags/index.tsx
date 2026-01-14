@@ -17,7 +17,7 @@ export default function Tags({ allPostsData }: TagsProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-8 space-y-6">
-        <h1 className="text-3xl font-display font-bold text-neon-pink">标签云</h1>
+        <h1 className="text-4xl font-display font-bold text-neon-blue">标签</h1>
         <div className="flex flex-wrap gap-3">
           {tags.map((tag) => (
             <Link key={tag} href={`/tags/${tag}`}>

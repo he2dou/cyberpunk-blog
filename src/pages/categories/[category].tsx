@@ -22,7 +22,7 @@ export default function CategoryPage({ category, posts, allPosts }: CategoryPage
       {/* Main Content */}
       <div className="lg:col-span-8 space-y-6">
         <div className="flex items-center gap-2 mb-8 pb-4 border-b border-border/50">
-          <h1 className="text-3xl font-display font-bold text-neon-blue">
+          <h1 className="text-4xl font-display font-bold text-neon-blue">
             分类: {category}
           </h1>
           <span className="text-muted-foreground text-lg font-mono">

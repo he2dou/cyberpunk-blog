@@ -14,13 +14,7 @@ export default function About({ allPostsData }: AboutProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
       <div className="lg:col-span-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="relative border-l-4 border-neon-blue pl-6 py-2">
-          <h1 className="text-4xl font-display font-bold">关于我</h1>
-          <p className="text-xl text-muted-foreground mt-2 font-mono text-neon-blue/80">
-            // CYBERLOG_SYSTEM_ADMIN
-          </p>
-        </div>
-
+        <h1 className="text-4xl font-display font-bold text-neon-blue">关于</h1>
         <div className="prose prose-invert max-w-none">
           <div className="float-right ml-6 mb-6 w-48 h-48 relative group">
              <div className="absolute inset-0 bg-neon-pink/20 blur-xl rounded-full group-hover:bg-neon-pink/40 transition-all duration-500"></div>
