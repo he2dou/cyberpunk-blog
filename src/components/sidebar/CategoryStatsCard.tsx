@@ -26,7 +26,7 @@ export default function CategoryStatsCard({ posts }: CategoryStatsCardProps) {
       
       <div className="space-y-2">
         {categories.map(([category, count]) => (
-          <Link key={category} href={`/categories?category=${encodeURIComponent(category)}`} className="flex items-center justify-between p-2 rounded hover:bg-accent/10 group transition-all duration-300 border border-transparent hover:border-neon-purple/30">
+          <Link key={category} href={`/categories/${category}`} className="flex items-center justify-between p-2 rounded hover:bg-accent/10 group transition-all duration-300 border border-transparent hover:border-neon-purple/30">
               <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
                 <Folder className="w-4 h-4 text-neon-purple" />
                 <span className="text-sm font-medium">{category}</span>

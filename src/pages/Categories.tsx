@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { getSortedPostsData, PostData } from "@/lib/posts";
 import ArchiveCard from "@/components/sidebar/ArchiveCard";
 import CategoryStatsCard from "@/components/sidebar/CategoryStatsCard";
@@ -21,10 +22,12 @@ export default function Categories({ allPostsData }: CategoriesProps) {
           {categories.map((cat) => {
              const count = allPostsData.filter(p => p.category === cat).length;
              return (
-              <div key={cat} className="p-6 border border-border/50 bg-card/50 backdrop-blur hover:border-neon-blue transition-all cursor-pointer group rounded-lg">
-                <h2 className="text-xl font-bold group-hover:text-neon-blue transition-colors">{cat}</h2>
-                <p className="text-muted-foreground mt-2 text-sm">{count} 篇文章</p>
-              </div>
+              <Link key={cat} href={`/categories/${cat}`}>
+                <div className="p-6 border border-border/50 bg-card/50 backdrop-blur hover:border-neon-blue transition-all cursor-pointer group rounded-lg h-full">
+                  <h2 className="text-xl font-bold group-hover:text-neon-blue transition-colors">{cat}</h2>
+                  <p className="text-muted-foreground mt-2 text-sm">{count} 篇文章</p>
+                </div>
+              </Link>
              );
           })}
         </div>

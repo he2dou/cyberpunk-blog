@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { getSortedPostsData, PostData } from "@/lib/posts";
 import ArchiveCard from "@/components/sidebar/ArchiveCard";
 import CategoryStatsCard from "@/components/sidebar/CategoryStatsCard";
@@ -19,9 +20,11 @@ export default function Tags({ allPostsData }: TagsProps) {
         <h1 className="text-3xl font-display font-bold text-neon-pink">标签云</h1>
         <div className="flex flex-wrap gap-3">
           {tags.map((tag) => (
-            <span key={tag} className="px-4 py-2 border border-border bg-accent/10 hover:bg-neon-pink/20 hover:border-neon-pink hover:text-neon-pink transition-all cursor-pointer rounded-full text-sm font-mono">
-              #{tag}
-            </span>
+            <Link key={tag} href={`/tags/${tag}`}>
+              <span className="px-4 py-2 border border-border bg-accent/10 hover:bg-neon-pink/20 hover:border-neon-pink hover:text-neon-pink transition-all cursor-pointer rounded-full text-sm font-mono inline-block">
+                #{tag}
+              </span>
+            </Link>
           ))}
         </div>
       </div>

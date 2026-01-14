@@ -1,4 +1,5 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
+import Link from 'next/link';
 import { getAllPostIds, getPostData, getSortedPostsData, PostData } from "@/lib/posts";
 import heroImg from "@/assets/hero.jpg";
 import { Clock, Calendar, FileText, Check, Copy } from "lucide-react";
@@ -82,9 +83,13 @@ export default function Post({ post, allPosts }: { post: PostData; allPosts: Pos
             <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
             <div className="absolute bottom-0 left-0 p-8">
                <div className="flex gap-2 mb-4">
-                 <span className="bg-neon-blue/20 text-neon-blue border border-neon-blue/50 px-3 py-1 text-xs font-mono rounded">{post.category}</span>
+                 <Link href={`/categories/${post.category}`} className="bg-neon-blue/20 text-neon-blue border border-neon-blue/50 px-3 py-1 text-xs font-mono rounded hover:bg-neon-blue/30 transition-colors cursor-pointer">
+                   {post.category}
+                 </Link>
                  {post.tags?.map(t => (
-                   <span key={t} className="bg-neon-pink/20 text-neon-pink border border-neon-pink/50 px-3 py-1 text-xs font-mono rounded">{t}</span>
+                   <Link key={t} href={`/tags/${t}`} className="bg-neon-pink/20 text-neon-pink border border-neon-pink/50 px-3 py-1 text-xs font-mono rounded hover:bg-neon-pink/30 transition-colors cursor-pointer">
+                     {t}
+                   </Link>
                  ))}
                </div>
                <h1 className="text-3xl md:text-4xl font-display font-bold leading-tight max-w-3xl text-glow">

@@ -35,9 +35,9 @@ export default function PostCard({
 
       <div className="p-6 md:p-8">
         <div className="flex items-center gap-2 mb-4 text-xs font-mono text-muted-foreground">
-           <span className="flex items-center gap-1 text-neon-blue">
+           <Link href={`/categories/${category}`} className="flex items-center gap-1 text-neon-blue hover:underline">
              <Folder className="w-3 h-3" /> {category}
-           </span>
+           </Link>
            {isSticky && (
              <span className="ml-auto px-2 py-0.5 rounded bg-accent/20 text-accent-foreground border border-accent/30">
                #置顶
@@ -66,7 +66,7 @@ export default function PostCard({
         {tags.length > 0 && (
           <div className="flex gap-2">
             {tags.map(tag => (
-              <Link key={tag} href={`/tags`}>
+              <Link key={tag} href={`/tags/${tag}`}>
                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-secondary/30 text-secondary-foreground hover:bg-neon-pink/20 hover:text-neon-pink transition-colors cursor-pointer border border-transparent hover:border-neon-pink/30">
                    <Tag className="w-3 h-3 mr-1" /> {tag}
                  </span>
