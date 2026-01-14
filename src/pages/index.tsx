@@ -14,11 +14,11 @@ interface HomeProps {
 }
 
 export default function Home({ allPostsData }: HomeProps) {
-  const [visibleCount, setVisibleCount] = useState(10);
+  const [visibleCount, setVisibleCount] = useState(5);
   const currentItems = allPostsData.slice(0, visibleCount);
 
   const handleLoadMore = () => {
-    setVisibleCount(prev => prev + 10);
+    setVisibleCount(prev => prev + 5);
   };
 
   return (

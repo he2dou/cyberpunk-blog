@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import CyberpunkOverlay from "@/components/ui/CyberpunkOverlay";
 import { cn } from "@/lib/utils";
 import { Search, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import avatarImg from "@/assets/avatar.jpg";
 // Note: We might need to handle image imports differently in Next.js if we want optimization, 
 // but for now standard import works if configured or using next/image with static import.
 // Using standard img tag for now to minimize changes.
 import Image from "next/image"; 
+import { SearchCommand } from "@/components/SearchCommand";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,8 +17,20 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter();
   const location = router.pathname;
+
+  useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        setIsSearchOpen((open) => !open)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
 
   const navItems = [
     { label: "首页", href: "/" },
@@ -74,8 +87,12 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
             ))}
             
-            <button className="p-2 hover:bg-accent/10 rounded-full text-muted-foreground hover:text-neon-yellow transition-colors">
+            <button 
+              onClick={() => setIsSearchOpen(true)}
+              className="p-2 hover:bg-accent/10 rounded-full text-muted-foreground hover:text-neon-yellow transition-colors flex items-center gap-2 group"
+            >
               <Search className="w-5 h-5" />
+              <span className="hidden lg:inline text-xs border border-border px-1.5 rounded text-muted-foreground/50 group-hover:border-neon-yellow/50 group-hover:text-neon-yellow/80 transition-colors">⌘K</span>
             </button>
           </nav>
 
@@ -100,6 +117,16 @@ export default function Layout({ children }: LayoutProps) {
                     {item.label}
                 </Link>
               ))}
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsSearchOpen(true);
+                }}
+                className="flex items-center gap-2 hover:text-neon-yellow transition-colors p-2 rounded hover:bg-accent/10 text-muted-foreground text-left"
+              >
+                 <Search className="w-5 h-5" />
+                 <span>搜索文章...</span>
+              </button>
             </nav>
           </div>
         )}
@@ -133,6 +160,8 @@ export default function Layout({ children }: LayoutProps) {
           </p>
         </div>
       </footer>
+
+      <SearchCommand open={isSearchOpen} onOpenChange={setIsSearchOpen} />
     </div>
   );
 }
