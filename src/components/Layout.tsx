@@ -66,7 +66,7 @@ export default function Layout({ children }: LayoutProps) {
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center gap-6 text-md font-medium">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className={cn(
                   "hover:text-neon-blue transition-colors relative py-1",
