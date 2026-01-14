@@ -8,7 +8,7 @@ views: 180
 comments: 3
 category: "数据库"
 tags: ["ClickHouse", "OLAP", "大数据"]
-isSticky: false
+isSticky: true
 ---
 
 # ClickHouse 极速 OLAP 数据库入门
