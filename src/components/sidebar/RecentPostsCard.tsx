@@ -1,8 +1,12 @@
-import { Link } from "wouter";
-import { posts } from "@/data/posts";
+import Link from "next/link";
+import { PostData } from "@/lib/posts";
 import { Calendar } from "lucide-react";
 
-export default function RecentPostsCard() {
+interface RecentPostsCardProps {
+  posts: PostData[];
+}
+
+export default function RecentPostsCard({ posts }: RecentPostsCardProps) {
   // Sort posts by date descending and take the first 5
   const recentPosts = [...posts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -20,8 +24,7 @@ export default function RecentPostsCard() {
             {/* Decoration line */}
             <div className="absolute left-0 top-1.5 w-[2px] h-[calc(100%-6px)] bg-border group-hover:bg-neon-blue transition-colors duration-300" />
             
-            <Link href={`/post/${post.id}`}>
-              <a className="block">
+            <Link href={`/posts/${post.id}`} className="block">
                 <h4 className="text-sm font-medium text-foreground/90 group-hover:text-neon-blue transition-colors line-clamp-2 leading-relaxed">
                   {post.title}
                 </h4>
@@ -29,7 +32,6 @@ export default function RecentPostsCard() {
                   <Calendar className="w-3 h-3" />
                   <span>{post.date}</span>
                 </div>
-              </a>
             </Link>
           </div>
         ))}

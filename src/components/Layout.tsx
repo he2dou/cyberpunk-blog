@@ -1,15 +1,14 @@
-import { Link, useLocation } from "wouter";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import CyberpunkOverlay from "@/components/ui/CyberpunkOverlay";
 import { cn } from "@/lib/utils";
 import { Search, Menu, X } from "lucide-react";
 import { useState } from "react";
 import avatarImg from "@/assets/avatar.jpg";
-import ProfileCard from "@/components/sidebar/ProfileCard";
-import PromoCard from "@/components/sidebar/PromoCard";
-import RewardCard from "@/components/sidebar/RewardCard";
-import RecentPostsCard from "@/components/sidebar/RecentPostsCard";
-import CategoryStatsCard from "@/components/sidebar/CategoryStatsCard";
-import ArchiveCard from "@/components/sidebar/ArchiveCard";
+// Note: We might need to handle image imports differently in Next.js if we want optimization, 
+// but for now standard import works if configured or using next/image with static import.
+// Using standard img tag for now to minimize changes.
+import Image from "next/image"; 
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,13 +16,14 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const router = useRouter();
+  const location = router.pathname;
 
   const navItems = [
     { label: "首页", href: "/" },
     { label: "分类", href: "/categories" },
     { label: "标签", href: "/tags" },
-    { label: "热门", href: "/hot" },
+    { label: "项目", href: "/projects" },
     { label: "关于", href: "/about" },
   ];
 
@@ -45,7 +45,7 @@ export default function Layout({ children }: LayoutProps) {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
              <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-primary group-hover:border-neon-pink transition-colors duration-300">
-                <img src={avatarImg} alt="Logo" className="object-cover w-full h-full" />
+                <img src={avatarImg.src} alt="Logo" className="object-cover w-full h-full" />
              </div>
              <span className="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-pink group-hover:from-neon-pink group-hover:to-neon-blue transition-all duration-500">
                CYBERLOG
@@ -55,8 +55,7 @@ export default function Layout({ children }: LayoutProps) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
             {navItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                <a className={cn(
+              <Link key={item.href} href={item.href} className={cn(
                   "hover:text-neon-blue transition-colors relative py-1",
                   location === item.href ? "text-neon-blue" : "text-muted-foreground"
                 )}>
@@ -64,17 +63,14 @@ export default function Layout({ children }: LayoutProps) {
                   {location === item.href && (
                     <span className="absolute bottom-0 left-0 w-full h-[2px] bg-neon-blue shadow-[0_0_8px_#00f3ff]" />
                   )}
-                </a>
               </Link>
             ))}
             
             <div className="h-4 w-[1px] bg-border" />
 
             {secondaryNavItems.map((item) => (
-              <Link key={item.href} href={item.href}>
-                 <a className="hover:text-neon-pink transition-colors text-muted-foreground">
+              <Link key={item.href} href={item.href} className="hover:text-neon-pink transition-colors text-muted-foreground">
                    {item.label}
-                 </a>
               </Link>
             ))}
             
@@ -97,13 +93,11 @@ export default function Layout({ children }: LayoutProps) {
           <div className="md:hidden border-b border-border bg-background p-4 animate-in slide-in-from-top-5">
             <nav className="flex flex-col gap-4">
               {[...navItems, ...secondaryNavItems].map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <a 
-                    className="block text-lg font-medium hover:text-primary pl-2 border-l-2 border-transparent hover:border-primary transition-all"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
+                <Link key={item.href} href={item.href} className={cn(
+                    "hover:text-neon-blue transition-colors p-2 rounded hover:bg-accent/10",
+                     location === item.href ? "text-neon-blue bg-accent/10" : "text-muted-foreground"
+                  )}>
                     {item.label}
-                  </a>
                 </Link>
               ))}
             </nav>
@@ -111,32 +105,32 @@ export default function Layout({ children }: LayoutProps) {
         )}
       </header>
 
-      {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Left Column (Content) */}
-        <div className="lg:col-span-8 space-y-8 min-w-0">
-          {children}
-        </div>
-
-        {/* Right Column (Sidebar) */}
-        <aside className="lg:col-span-4 space-y-8 hidden lg:block">
-           {/* Sidebar placeholder content - will be replaced by components later */}
-           <div className="sticky top-24 space-y-8">
-             <ProfileCard />
-             <RecentPostsCard />
-             <CategoryStatsCard />
-             <PromoCard />
-             <RewardCard />
-             <ArchiveCard />
-           </div>
-        </aside>
+      {/* Main Content */}
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
+        {children}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-border/40 bg-background/50 backdrop-blur-sm mt-auto">
-        <div className="w-full max-w-6xl mx-auto px-4 py-8 text-center text-muted-foreground text-sm font-mono">
-          <p>© 2026 CYBERLOG. All rights reserved.</p>
-          <p className="mt-2 text-xs opacity-60">System Status: ONLINE // Secure Connection Established</p>
+      <footer className="border-t border-border/40 bg-background/80 backdrop-blur-sm py-12 mt-auto">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <div className="mb-8">
+            <h3 className="text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-pink mb-4">
+              CYBERLOG
+            </h3>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              Exploring the digital frontier. Code, design, and thoughts on the future of technology.
+            </p>
+          </div>
+          
+          <div className="flex justify-center gap-6 mb-8 text-sm text-muted-foreground">
+             <Link href="/rss" className="hover:text-neon-blue transition-colors">RSS</Link>
+             <Link href="/about" className="hover:text-neon-blue transition-colors">About</Link>
+             <Link href="/contact" className="hover:text-neon-blue transition-colors">Contact</Link>
+          </div>
+
+          <p className="text-xs text-muted-foreground/50 font-mono">
+            © {new Date().getFullYear()} CyberLog. All systems operational.
+          </p>
         </div>
       </footer>
     </div>

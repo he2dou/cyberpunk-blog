@@ -1,11 +1,17 @@
-import { Link } from "wouter";
-import { posts } from "@/data/posts";
+import Link from "next/link";
+import { PostData } from "@/lib/posts";
 import { Folder, ChevronRight } from "lucide-react";
 
-export default function CategoryStatsCard() {
+interface CategoryStatsCardProps {
+  posts: PostData[];
+}
+
+export default function CategoryStatsCard({ posts }: CategoryStatsCardProps) {
   // Calculate category counts
   const categoryCounts = posts.reduce((acc, post) => {
-    acc[post.category] = (acc[post.category] || 0) + 1;
+    if (post.category) {
+      acc[post.category] = (acc[post.category] || 0) + 1;
+    }
     return acc;
   }, {} as Record<string, number>);
 
@@ -20,8 +26,7 @@ export default function CategoryStatsCard() {
       
       <div className="space-y-2">
         {categories.map(([category, count]) => (
-          <Link key={category} href={`/categories?category=${encodeURIComponent(category)}`}>
-            <a className="flex items-center justify-between p-2 rounded hover:bg-accent/10 group transition-all duration-300 border border-transparent hover:border-neon-purple/30">
+          <Link key={category} href={`/categories?category=${encodeURIComponent(category)}`} className="flex items-center justify-between p-2 rounded hover:bg-accent/10 group transition-all duration-300 border border-transparent hover:border-neon-purple/30">
               <div className="flex items-center gap-2 text-muted-foreground group-hover:text-foreground transition-colors">
                 <Folder className="w-4 h-4 text-neon-purple" />
                 <span className="text-sm font-medium">{category}</span>
@@ -32,7 +37,6 @@ export default function CategoryStatsCard() {
                  </span>
                  <ChevronRight className="w-3 h-3 text-muted-foreground/50 group-hover:text-neon-purple opacity-0 group-hover:opacity-100 transition-all -ml-3 group-hover:ml-0" />
               </div>
-            </a>
           </Link>
         ))}
       </div>

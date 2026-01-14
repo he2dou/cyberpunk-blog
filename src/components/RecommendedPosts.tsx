@@ -1,13 +1,14 @@
-import { Link } from "wouter";
-import { posts } from "@/data/posts";
+import Link from "next/link";
+import { PostData } from "@/lib/posts";
 import { ArrowRight, FileText } from "lucide-react";
 
 interface RecommendedPostsProps {
   currentPostId: string;
-  currentCategory: string;
+  currentCategory?: string;
+  posts: PostData[];
 }
 
-export default function RecommendedPosts({ currentPostId, currentCategory }: RecommendedPostsProps) {
+export default function RecommendedPosts({ currentPostId, currentCategory, posts }: RecommendedPostsProps) {
   // Simple recommendation logic:
   // 1. Filter out current post
   // 2. Prioritize same category
@@ -32,8 +33,7 @@ export default function RecommendedPosts({ currentPostId, currentCategory }: Rec
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {recommendations.map(post => (
-          <Link key={post.id} href={`/post/${post.id}`}>
-            <a className="group block h-full bg-card/40 border border-border/50 rounded-lg p-5 hover:border-neon-blue/50 hover:bg-card/60 transition-all duration-300 relative overflow-hidden">
+          <Link key={post.id} href={`/posts/${post.id}`} className="group block h-full bg-card/40 border border-border/50 rounded-lg p-5 hover:border-neon-blue/50 hover:bg-card/60 transition-all duration-300 relative overflow-hidden">
               {/* Hover glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-neon-blue/0 via-neon-blue/5 to-neon-blue/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               
@@ -60,7 +60,6 @@ export default function RecommendedPosts({ currentPostId, currentCategory }: Rec
                   READ MORE <ArrowRight className="w-3 h-3 ml-1" />
                 </div>
               </div>
-            </a>
           </Link>
         ))}
       </div>

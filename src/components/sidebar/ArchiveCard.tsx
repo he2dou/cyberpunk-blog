@@ -1,8 +1,12 @@
-import { Link } from "wouter";
-import { posts } from "@/data/posts";
-import { Archive, ChevronRight, CalendarClock } from "lucide-react";
+import Link from "next/link";
+import { PostData } from "@/lib/posts";
+import { CalendarClock, ChevronRight } from "lucide-react";
 
-export default function ArchiveCard() {
+interface ArchiveCardProps {
+  posts: PostData[];
+}
+
+export default function ArchiveCard({ posts }: ArchiveCardProps) {
   // Group posts by Year and Month
   const archiveData = posts.reduce((acc, post) => {
     const date = new Date(post.date);
@@ -43,8 +47,7 @@ export default function ArchiveCard() {
               
               <div className="pl-4 space-y-1 border-l border-border/50 ml-2">
                 {months.map((monthData) => (
-                  <Link key={`${year}-${monthData.value}`} href={`/archives/${year}/${monthData.value}`}>
-                    <a className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-accent/10 group transition-all text-sm">
+                  <Link key={`${year}-${monthData.value}`} href={`/archives/${year}/${monthData.value}`} className="flex items-center justify-between py-1.5 px-2 rounded hover:bg-accent/10 group transition-all text-sm">
                       <span className="text-muted-foreground group-hover:text-foreground transition-colors">
                         {monthData.label}
                       </span>
@@ -54,7 +57,6 @@ export default function ArchiveCard() {
                         </span>
                         <ChevronRight className="w-3 h-3 text-muted-foreground/30 group-hover:text-neon-yellow opacity-0 group-hover:opacity-100 transition-all" />
                       </div>
-                    </a>
                   </Link>
                 ))}
               </div>

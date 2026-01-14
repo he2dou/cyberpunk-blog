@@ -1,17 +1,16 @@
-import { Link } from "wouter";
+import Link from "next/link";
 import { Clock, Calendar, FileText, Eye, MessageSquare, Folder, Tag } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface PostCardProps {
   id: string | number;
   title: string;
-  excerpt: string;
+  excerpt?: string;
   date: string;
-  readTime: string;
-  wordCount: number;
-  views: number;
-  comments: number;
-  category: string;
+  readTime?: string;
+  wordCount?: number;
+  views?: number;
+  comments?: number;
+  category?: string;
   tags?: string[];
   isSticky?: boolean;
 }
@@ -46,7 +45,7 @@ export default function PostCard({
            )}
         </div>
 
-        <Link href={`/post/${id}`}>
+        <Link href={`/posts/${id}`}>
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-4 cursor-pointer group-hover:text-neon-blue transition-colors leading-tight">
             {title}
           </h2>
@@ -54,10 +53,10 @@ export default function PostCard({
 
         <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4 font-mono">
           <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {date}</span>
-          <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {readTime}</span>
-          <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {wordCount} 字</span>
-          <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {views} 阅读</span>
-          <span className="flex items-center gap-1"><MessageSquare className="w-3 h-3" /> {comments} 评论</span>
+          {readTime && <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> {readTime}</span>}
+          {wordCount && <span className="flex items-center gap-1"><FileText className="w-3 h-3" /> {wordCount} 字</span>}
+          {views && <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {views} 阅读</span>}
+          {comments && <span className="flex items-center gap-1"><MessageSquare className="w-3 h-3" /> {comments} 评论</span>}
         </div>
 
         <p className="text-muted-foreground/80 leading-relaxed mb-6 line-clamp-3">
