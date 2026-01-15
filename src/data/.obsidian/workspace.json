@@ -6,6 +6,7 @@
       {
         "id": "a8caa772c51ac68b",
         "type": "tabs",
+        "dimension": 77.41116751269035,
         "children": [
           {
             "id": "eac0303708247bef",
@@ -13,13 +14,37 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "docker-notes.md",
+                "file": "letsencrypt-notes.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "docker-notes"
-            }
+              "title": "letsencrypt-notes"
+            },
+            "group": "3eb143fd8da369e7"
+          }
+        ]
+      },
+      {
+        "id": "8b59f6db71f2efe1",
+        "type": "tabs",
+        "dimension": 22.588832487309645,
+        "children": [
+          {
+            "id": "e8702dd59749b549",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "letsencrypt-notes.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "letsencrypt-notes 的大纲"
+            },
+            "group": "3eb143fd8da369e7"
           }
         ]
       }
@@ -182,6 +207,9 @@
   },
   "active": "eac0303708247bef",
   "lastOpenFiles": [
+    "kafka-notes.md",
+    "git-notes.md",
+    "docker-notes.md",
     "windows-notes.md",
     "trae-notes.md",
     "sqlite-notes.md",
