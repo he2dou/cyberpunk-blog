@@ -38,7 +38,7 @@ export default function About({ allPostsData }: AboutProps) {
           <p>
             如果你对赛博朋克美学或前沿技术感兴趣，欢迎通过量子网络连接我：
             <br/>
-            <span className="font-mono text-neon-blue">admin@cyberlog.net</span>
+            <span className="font-mono text-neon-blue">admin@tinyandnice.com</span>
           </p>
         </div>
       </div>

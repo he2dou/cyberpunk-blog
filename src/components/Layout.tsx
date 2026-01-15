@@ -61,7 +61,7 @@ export default function Layout({ children }: LayoutProps) {
                 <img src={avatarImg.src} alt="Logo" className="object-cover w-full h-full" />
              </div>
              <span className="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-pink group-hover:from-neon-pink group-hover:to-neon-blue transition-all duration-500">
-               CYBERLOG
+               TINYANDNICE
              </span>
           </Link>
 
@@ -142,7 +142,7 @@ export default function Layout({ children }: LayoutProps) {
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="mb-8">
             <h3 className="text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-neon-blue to-neon-pink mb-4">
-              CYBERLOG
+              TINYANDNICE
             </h3>
             <p className="text-muted-foreground max-w-md mx-auto">
               Exploring the digital frontier. Code, design, and thoughts on the future of technology.
@@ -156,7 +156,7 @@ export default function Layout({ children }: LayoutProps) {
           </div>
 
           <p className="text-xs text-muted-foreground/50 font-mono">
-            © {new Date().getFullYear()} CyberLog. All systems operational.
+            © {new Date().getFullYear()} TinyAndNice. All systems operational.
           </p>
         </div>
       </footer>
